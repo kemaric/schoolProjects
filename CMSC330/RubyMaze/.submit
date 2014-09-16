@@ -1,0 +1,11 @@
+# Submit server .submit file for
+#  Course CMSC330
+#  Project 1: Ruby: Mazes
+
+courseName=CMSC330
+semester=201301
+projectNumber=1
+courseKey=b4888c2d114c9f4d
+authentication.type=ldap
+baseURL=https://submit.cs.umd.edu:443
+submitURL=https://submit.cs.umd.edu:443/eclipse/SubmitProjectViaEclipse

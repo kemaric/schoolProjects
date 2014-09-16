@@ -1,0 +1,418 @@
+<!--#include virtual="../header.html" -->
+
+<body>
+
+<h1 class="title">Project 3</h1>
+<center>
+Due 11:59pm Wed, Mar 28, 2013<br>
+</center>
+
+<h2>Introduction</h2>
+
+<p>
+In this project, you will gain experience writing code in OCaml.  The
+focus of this project is getting used to OCaml's syntax, using
+recursion to work with lists, and using data types.  You will also
+learn a little about programming language design.
+
+<h2>Project files</h2>
+
+<p>
+<ul>
+<li>Code skeleton (all files, including tests, in <a href = "p3.zip">p3.zip</a>)
+<ul>
+<li><a href="warmup.ml">warmup.ml</a>
+<li><a href="regexp.ml">regexp.ml</a>
+<li><a href="arith.ml">arith.ml</a>
+<li><a href="cmd.ml">cmd.ml</a>
+</ul>
+<li>Files for command line submission (see "How to Submit" for usage)
+<ul>
+<li><a href=".submit">.submit</a>
+<li><a href="../p2/submit.jar">submit.jar</a>
+</ul>
+<li>Public tests: copy your <tt>*.ml</tt> into
+the <tt>p3_public_tests</tt> directory and run the tests.
+<ul>
+<li><a href="p3_public_tests.zip">p3_public_tests.zip</a>
+</ul>
+</ul>
+
+<h2>Part 1:  List Exercises</h2>
+
+<p>
+Write your solutions to this part in the file <tt>warmup.ml</tt>.
+
+<p>
+Implement the following functions in OCaml.  <b>Do not</b> use any functions
+in the List or Array modules, i.e., write every function from scratch
+using just list notation [...], ::, and pattern matching.  You should
+also not use the list concatenation operator @ from Pervasives. You
+are allowed to write separate helper functions if you like.
+
+<ul>
+<li>Write a function <tt>prod l : int list -> int</tt> that returns
+the product of the elements of <tt>l</tt>. The function prod should
+return <tt>1</tt> if the list is empty.
+
+<li>Write a function <tt>add_tail l e : 'a list -> 'a -> 'a list</tt>
+that takes a list <tt>l</tt> and a single element <tt>e</tt> and
+returns a new list where <tt>e</tt> is appended to the <tt>back</tt>
+of <tt>l</tt>.  For example, <tt>add_tail [1;2] 3</tt> =
+<tt>[1;2;3]</tt>.
+
+<li>Write a function <tt>fill x n : 'a -> int -> 'a list</tt> that
+returns a list containing <tt>n</tt> copies of <tt>x</tt>.  For
+example, <tt>fill 42 3</tt> returns <tt>[42; 42; 42]</tt>. If
+  <tt>n</tt> is less than or equal to 0, return the empty list.
+
+<li>Write a function <tt>rindex l e : 'a list -> 'a -> int</tt> that
+takes a list and a single element and returns the position of the last
+occurrence of that element in the list (indexed by zero). You should
+return -1 if the element is not in the list. Use structural equality
+(the <tt>=</tt> operator, not <tt>==</tt>) for checking membership. 
+
+<li>Write a function <tt>even_elts l : 'a list -> 'a list</tt> that
+takes a list and returns a new list containing the 0th, 2nd, 4th, etc
+elements of <tt>l</tt>.  For example, <tt>even_elts
+['a';'b';'c';'d';'e']</tt> should return <tt>['a';'c';'e']</tt>.
+
+<li>Write a function <tt>sublist n m l : int -> int -> 'a list -> 'a list</tt>
+that returns a new list containing the elements of <tt>l</tt> starting
+with element <tt>n</tt>, inclusive, and ending with element
+<tt>m</tt>, inclusive.  For example, <tt>sublist 2 4 ['a'; 'b'; 'c';
+'d'; 'e'; 'f']</tt> should return <tt>['c'; 'd'; 'e']</tt>.  Your
+function may do anything if <tt>n>m</tt> or if <tt>n</tt> or
+<tt>m</tt> are out of range for the list.
+
+<li>Write a function <tt>rotate n l : int -> 'a list -> 'a list</tt>
+that returns a new list containing the same elements as <tt>l</tt>,
+"rotated" <tt>n</tt> times to the right.  For example,
+<ul>
+<li><tt>rotate 0 [1;2;3;4]</tt> should return <tt>[1;2;3;4]</tt>
+<li><tt>rotate 1 [1;2;3;4]</tt> should return <tt>[4;1;2;3]</tt>
+<li><tt>rotate 2 [1;2;3;4]</tt> should return <tt>[3;4;1;2]</tt>
+<li><tt>rotate 3 [1;2;3;4]</tt> should return <tt>[2;3;4;1]</tt>
+<li><tt>rotate 4 [1;2;3;4]</tt> should return <tt>[1;2;3;4]</tt>
+<li>etc.
+</ul>
+The behavior of <tt>rotate</tt> for <tt>n</tt> less than 0 is the same
+is for <tt>n</tt> equal to 0.
+
+<li>Write a function <tt>unzip l : ('a*'b) list -> ('a list)*('b
+list)</tt> that, given a list of pairs, returns a pair of lists with
+the elements in the same order. For example, <tt>unzip [(1, 2); (3,
+4)]</tt> = <tt>([1; 3], [2;4])</tt>.
+
+<li>Write a function <tt>app_int f m n : (int->'a)->int->int->'a
+list</tt> that returns the list <tt>[f m; f (m+1); ...; f n]</tt>. It
+should return the empty list if <tt>n</tt> &lt; <tt>m</tt>.
+</ul>
+
+<h2>Part 2:  Regular Expressions, again!</h2>
+
+<p>
+Write your solutions to this part in the file <tt>regexp.ml</tt>.
+From here on out in the project, you can freely use any part of the
+OCaml standard library.
+
+<p>
+In <a href="p2">Project 2</a>, you developed code to implement regular
+expressions as NFAs and DFAs.  One interesting design choice in that
+project was the way regular expressions were represented, which was as
+a set of classes <tt>REEpsilon</tt>, <tt>REConst</tt>,
+<tt>REStar</tt>, <tt>REUnion</tt>, and <tt>REConcat</tt>.  Consider
+instead representing regular expressions in OCaml using the following
+data type:
+
+<pre>
+type regexp =
+    REEpsilon
+  | REConst of char
+  | REStar of regexp
+  | REUnion of regexp * regexp
+  | REConcat of regexp * regexp
+</pre>
+
+For example, here is a table of regular expressions, and their
+representation in this data type:
+
+<center>
+<table class="staff" border=1>
+<tr><td><b>Regexp</b><td><b>OCaml code</b>
+<tr><td>empty string<td>let r1 = REEpsilon
+<tr><td>c<td>let r2 = REConst 'c'
+<tr><td>a|b<td>let r3 = REUnion (REConst 'a', REConst 'b')
+<tr><td>abc<td>let r4 = REConcat(REConst 'a', (REConcat(REConst 'b', REConst 'c')))
+<tr><td>a*b<td>let r5 = REConcat(REStar(REConst 'a'), REConst 'b')
+</table>
+</center>
+
+<p>
+For this part of the project, implement the functions
+<tt>check(e)</tt> and <tt>trans(e)</tt> again (yes, you read that
+right!).  These functions should have the following types:
+
+<ul>
+<li><tt>check : regexp -> bool</tt>
+<li><tt>trans : regexp -> (char * regexp) list</tt>
+</ul>
+
+<p>
+The list of pairs returned by <tt>trans</tt> should be unique, i.e.,
+it should not contain duplicates.
+
+<p>
+After you're done implementing these functions in OCaml, recall your
+experience writing them in Ruby.  Which language were they easier to
+write in?  Do you prefer having the code for <tt>check</tt> and
+<tt>trans</tt> grouped in one unit, as they are in OCaml, or spread
+among different classes, as they were in Ruby?  Did the OCaml type
+system make it easier or more difficult to implement them?  You don't need
+to submit your answers to these questions, but please do consider them.
+
+<h2>Part 3:  Arithmetic Expressions</h2>
+
+<p>
+Write your solutions to this part in the file <tt>arith.ml</tt>.
+
+<p>
+In this part of the project, you will work with a data type that
+represents abstract syntax trees for arithmetic expressions that may
+contain variables:
+<pre>
+type expr =
+    Int of int
+  | Negate of expr
+  | Plus of expr * expr
+  | Minus of expr * expr
+  | Mult of expr * expr
+  | Var of string
+</pre>
+
+For example, here are several expressions and their representation in
+OCaml using the above data type:
+<center>
+<table class="staff" border=1>
+<tr><td><b>Expression</b><td><b>OCaml code</b>
+<tr><td>42<td>let e1 = Int 42
+<tr><td>42 + 13<td>let e2 = Plus(Int 42, Int 13)
+<tr><td>3 * (2 + 1)<td>let e3 = Mult(Int 3, Plus(Int 2, Int 1))
+<tr><td>2 - (-4)<td>let e4 = Minus(Int 2, Negate(Int 4))
+<tr><td>x + y<td>let e5 = Plus(Var "x", Var "y")
+<tr><td>foo * (3 + baz)<td>let e6 = Mult(Var "foo", Plus(Int 3, Var "baz"))
+</table>
+</center>
+
+<p>
+If an arithmetic expression has a variable, then we can only decide
+what an expression "means" if we know the values of its variables.
+We will use a type
+<pre>
+  type assignment = (string * int) list
+</pre>
+to represent an assignment of variable names (which are arbitrary
+strings) to integers.  Here if an <tt>assignment</tt> contains the
+pair <i>(x,n)</i>, then the assignment gives the variable named
+<i>x</i> the value <i>n</i>.  The type <tt>assignment</tt> is a kind
+of <i>associative list</i>, and there are a number of functions for
+working with such lists available in the OCaml standard library,
+including <tt>List.assoc</tt>, <tt>List.mem_assoc</tt>, and others.
+See the OCaml library documentation for more information.
+
+<ul>
+
+<li>Write a function <tt>no_mult : expr -> bool</tt> that returns
+<tt>true</tt> if the expression contains no occurrence of a value
+constructed with <tt>Mult</tt>, and <tt>false</tt> otherwise.  For
+example, <tt>no_mult</tt> should return <tt>true</tt> for e1, e2, e4,
+and e5, and <tt>false</tt> for e3 and e6.
+
+<li>Write a function <tt>vars_of : expr -> string list</tt> that
+returns a list containing the names of variables used in the
+expression.  For example, <tt>vars_of e5</tt> should return <tt>["x";
+"y"]</tt>, and <tt>vars_of e2</tt> should return <tt>[]</tt>.  The
+function <tt>vars_of</tt> should return a list in which each variable
+appears at most once, i.e., you should remove duplicates.
+
+<li>Write a function <tt>eval : assignment -> expr -> int</tt> that
+returns the value an expression evaluates to.  For example, here are
+some results of <tt>eval</tt>:
+<ul>
+<li><tt>eval [] e2</tt> returns 55
+<li><tt>eval [] e4</tt> returns 6
+<li><tt>eval [("x", 3); ("y", 4)] e5</tt> returns 7
+<li><tt>eval [("foo", 10)] e6</tt> aborts with an error
+<li><tt>eval [("foo", 10); ("x", 3); ("baz", 2)] e6</tt> returns 50
+</ul>
+If <tt>eval a e</tt> is called such that a variable in <tt>e</tt> does
+not occur in <tt>a</tt>, your program should use <tt>raise
+Not_found</tt> to throw an exception.  In the case the same variable
+name appears multiple times in <tt>eval</tt>, your function should use
+the <i>first</i> or <i>left-most</i> assignment of the variable in the
+assignment.
+
+<li>Write a function <tt>subst : expr -> (string * expr) list ->
+expr</tt> such that <tt>expr e s</tt> returns a new expression that is
+identical to <tt>e</tt>, except variables occurring in <tt>e</tt> have
+been replaced according to <tt>s</tt>.  Here a pair <tt>("x", e)</tt>
+occurring in <tt>s</tt> indicates that <tt>Var "x"</tt> should be
+replaced by the expression <tt>e</tt>.  For example,
+<tt>subst e6 [("foo", Int 4)]</tt> should
+return <tt>Mult(Int 4, Plus(Int 3, Var "baz"))</tt>.  Note that your
+<tt>subst</tt> function should perform just one "level" of
+substitution.  For example, <tt>subst (Plus(Var "v", Int 3)) [("v",
+Negate (Var "v"))]</tt> should return <tt>Plus(Negate (Var "v"), Int
+3)</tt>.
+</ul>
+
+<h2>Part 4:  Language of Commands</h2>
+
+<p>
+Write your solution to this part in the file <tt>cmd.ml</tt>.
+
+<p>
+Finally, consider embedding arithmetic expressions in a simple
+programming language consisting of <i>commands</i>:
+
+<pre>
+type cmd =
+    Skip
+  | Assign of string * expr
+  | Seq of cmd * cmd
+  | IfNonZero of expr * cmd * cmd
+  | WhileNonZero of expr * cmd
+</pre>
+
+<p>
+Since commands work with variables, we always evaluate commands with
+respect to some <tt>assignment</tt> (the same type as in Part 3), and
+executing a command produces a new assignment.  For this last part of
+the project, you must write a function <tt>exec : assignment -> cmd ->
+assignment</tt> that, given the current assignment of variables to
+values, executes the command and returns a new assignment of variables
+to values.  Calling <tt>exec a c</tt> should do the following, based
+on the command <tt>c</tt>:
+
+<ul>
+
+<li><tt>Skip</tt> does nothing, returning <tt>a</tt>.
+
+<li><tt>Assign("x",e)</tt> evaluates <tt>e</tt> under the assignment
+<tt>a</tt>, and then returns a new assignment that is the same as
+<tt>a</tt>, except now <tt>"x"</tt> is mapped to the result of the
+evaluation.
+
+<li><tt>Seq(c1, c2)</tt> executes <tt>c1</tt> under assignment
+<tt>a</tt>, producing a new assignment <tt>a1</tt>; executes
+<tt>c2</tt> under assignment <tt>a1</tt>, producing a new assignment
+<tt>a2</tt>; and then returns <tt>a2</tt>.
+
+<li><tt>IfNonZero(e1,c1,c2)</tt> evaluates <tt>e1</tt> under
+assignment <tt>a</tt>.  If evaluation returns a non-zero value, then
+<tt>c1</tt> is executed under assignment <tt>a</tt>, and otherwise
+<tt>c2</tt> is executed under assignment <tt>a</tt>.
+
+<li><tt>WhileNonZero(e,c)</tt> evaluates <tt>e</tt> under assignment
+<tt>a</tt>.  If that returns zero, assignment <tt>a</tt> is returned.
+Otherwise, <tt>c</tt> is executed once under assignment <tt>a</tt>,
+producing a new assignment <tt>a'</tt>.  Then
+<tt>WhileNonZero(e,c)</tt> is executed under assignment <tt>a'</tt>.
+
+</ul>
+
+<p>Hint: Above we've basically just written the <tt>exec</tt> function
+for you, except we used English instead of OCaml.  So all you need to
+do is translate that into OCaml.  But you should also try to
+understand <i>why</i> the execution cases above make sense.  Think
+about the following questions: If we added a form <tt>Block of cmd
+list</tt>, where the list contained many commands in sequence, how
+would you execute a <tt>Block</tt>?  What about adding an
+<tt>Unless</tt> conditional form?  Or a <tt>For</tt> loop, or a
+<tt>RepeatUntil</tt> loop?  What other language features would be easy
+to add to this language of commands?
+
+<h2>Hints and Tips</h2>
+
+<ul>
+<li>Start this project early!  For many students, learning OCaml
+requires quite a leap in the way they approach programming, and you need
+to give yourself enough time to make that leap.
+<li>When debugging type inference errors, consider adding type
+  annotations on the function arguments to make more meaningful error
+  messages. For example, suppose you have written
+<pre>
+let fill x n =
+  ...
+</pre>
+and the OCaml type checker is complaining that you have a type error
+  in your code. Then we would suggest you rewrite the first part to
+  indicate the expected types:
+<pre>
+let fill (x:'a) (n:int) : 'a list =
+  ...
+</pre>
+The type inference engine will probably give you more meaningful error
+  messages now that it knows what you intend.
+<li>When testing Part 4, we will plug in a correct arith.ml. While this should help make grading equitable, it also means you need to be extra careful not to change any of the interfaces we supply you with, since we will be relying on those in grading. 
+</ul>
+
+<h2>Submission</h2>
+
+<p>
+You may either submit over the web or under command line interface.
+
+<h3>Submitting over the web</h3>
+Put your files (warmup.ml, regexp.ml, arith.ml, cmd.ml) in a zip archive. Don't put things under a directory but on the top level.
+<p>
+Submit your archive directly to the
+<a href="http://submit.cs.umd.edu">submit server</a>
+by clicking on the submit link in the column "web submission".
+
+<p>
+<img src="../p1/submit1.jpg">
+<p>
+
+Next, use the submit dialog to submit your <i>schedule.rb</i> file directly.
+
+<p>
+<img src="../p1/submit2.jpg">
+<p>
+
+Select your file using the "Browse" button,
+then press the "Submit project!" button.
+
+<h3>Submitting in command line interface</h3>
+Make a directory and put your files in it. Download .submit and submit.jar in Project Files to the same directory. Then run the following command under that directory:
+<p>
+<center><tt>java -jar submit.jar</tt></center>
+<p>
+The first time you submit this way you will be asked to enter your
+directory ID and password. All files in the directory (and its subdirectories) will then be put in a jar file and submitted to the submit server. If your submission is successful you will see the message:
+<p>
+<center><tt>Successful submission # received for project 3</tt></center>
+
+<h2>Academic Integrity</h2>
+
+<p>
+The Campus Senate has adopted a policy asking students to include the
+following statement on each assignment in every course: "I pledge on
+my honor that I have not given or received any unauthorized assistance
+on this assignment."  Consequently your program is requested to
+contain this pledge in a comment near the top.
+
+<p>
+Please <b>carefully read</b> the academic honesty section of the
+course syllabus.  <b>Any evidence</b> of impermissible cooperation on
+projects, use of disallowed materials or resources, or unauthorized
+use of computer accounts, <b>will be submitted</b> to the Student
+Honor Council, which could result in an XF for the course, or
+suspension or expulsion from the University.  Be sure you understand
+what you are and what you are not permitted to do in regards to
+academic integrity when it comes to project assignments.  These
+policies apply to all students, and the Student Honor Council does not
+consider lack of knowledge of the policies to be a defense for
+violating them.  Full information is found in the course
+syllabus---please review it at this time.
+
+<!--#include virtual="../footer.html" -->
