@@ -1,0 +1,72 @@
+Initial Board
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+RRRRRRR
+RRRRRRR
+RRRRRRR
+RRRRRRR
+RRRRRRR
+RRRRRRR
+Game Over: true
+Score: 0
+
+After processCell(3, 3)
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+RRRRRRR
+RR...RR
+RR...RR
+RR...RR
+RRRRRRR
+RRRRRRR
+Game Over: true
+Score: 9
+
+After Setting cell 6, 3 yellow
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+RRRRRRR
+RR...RR
+RR...RR
+RR...RR
+RRRRRRR
+RRRYRRR
+Game Over: true
+Score: 9
+
+After processCell(5, 3)
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+RRRRRRR
+RR...RR
+RR...RR
+RR...RR
+RR...RR
+RR.Y.RR
+Game Over: true
+Score: 14
+
+After processCell(6, 6)
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+RRRRRRR
+RR...RR
+RR...RR
+RR...RR
+RR.....
+RR.Y...
+Game Over: true
+Score: 18
+
+After processCell(2, 2)
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+RRRRRRR
+RR...RR
+RR...RR
+RR...RR
+RR.....
+RR.Y...
+Game Over: true
+Score: 18
+

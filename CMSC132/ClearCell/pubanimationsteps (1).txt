@@ -1,0 +1,49 @@
+Initial board
+Board(Rows: 8, Cols: 16)
+................
+................
+................
+................
+................
+................
+................
+................
+
+Board after first set of animation steps
+Board(Rows: 8, Cols: 16)
+RBBYGRGRYRRRRGGY
+RGYRRRRRRRBBBBRY
+BBGRGBRRRRYYBBRR
+RYBYRRRGYYRYBYBR
+................
+................
+................
+................
+
+Game Over: false
+
+Board after second set of animation steps
+Board(Rows: 8, Cols: 16)
+GYBGBRRRYYRGGGGR
+GGGRRBRRRRYYYBBR
+YBGYRRRRRRBGRRYR
+YGYRRYRGRYBBBGGB
+RBBYGRGRYRRRRGGY
+RGYRRRRRRRBBBBRY
+BBGRGBRRRRYYBBRR
+RYBYRRRGYYRYBYBR
+
+Game Over: true
+
+Board after third set of animation steps
+Board(Rows: 8, Cols: 16)
+GYBGBRRRYYRGGGGR
+GGGRRBRRRRYYYBBR
+YBGYRRRRRRBGRRYR
+YGYRRYRGRYBBBGGB
+RBBYGRGRYRRRRGGY
+RGYRRRRRRRBBBBRY
+BBGRGBRRRRYYBBRR
+RYBYRRRGYYRYBYBR
+
+Game Over: true

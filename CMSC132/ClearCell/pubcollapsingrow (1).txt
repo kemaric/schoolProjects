@@ -1,0 +1,182 @@
+After animation steps
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+RRRRRRBBBBRY
+RRYYBBRRRGYR
+BYBRBBGRGBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 0
+
+After processCell(2, 0)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRRRBBBBRY
+..YYBBRRRGYR
+BYBRBBGRGBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 4
+
+After processCell(2, 1)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRRRBBBBRY
+..YYBBRRRGYR
+BYBRBBGRGBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 4
+
+After processCell(2, 2)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRRRBBBBRY
+....BBRRRGYR
+B.BRBBGRGBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 7
+
+After processCell(2, 3)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRRRBBBBRY
+....BBRRRGYR
+B.BRBBGRGBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 7
+
+After processCell(2, 4)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRRRBBBBRY
+......RRRGYR
+B.BR..GRGBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 11
+
+After processCell(2, 5)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRRRBBBBRY
+......RRRGYR
+B.BR..GRGBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 11
+
+After processCell(2, 6)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRR.BBBBRY
+........RGYR
+B.BR..G.GBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 15
+
+After processCell(2, 7)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRR.BBBBRY
+........RGYR
+B.BR..G.GBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 15
+
+After processCell(2, 8)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRR.BBBBRY
+.........GYR
+B.BR..G.GBRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 16
+
+After processCell(2, 9)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRR.BBBBRY
+..........YR
+B.BR..G..BRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 18
+
+After processCell(2, 10)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRR.BBBBR.
+...........R
+B.BR..G..BRR
+RYBYRRRGYYRY
+............
+............
+............
+............
+Game Over: false
+Score: 20
+
+After processCell(2, 11)
+Board(Rows: 9, Cols: 12)
+RBBYGRGRYRRR
+..RRR.BBBB..
+B.BR..G..B..
+RYBYRRRGYYRY
+............
+............
+............
+............
+............
+Game Over: false
+Score: 24
+

@@ -1,0 +1,36 @@
+Initial Board
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+YYYYYYY
+RRRRRRR
+YYYYYYY
+RRRRRRR
+YYYYYYY
+RRRRRRR
+Game Over: true
+Score: 0
+
+After processCell(2, 3)
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+YYYYYYY
+RR...RR
+YYYYYYY
+RRRRRRR
+YYYYYYY
+RRRRRRR
+Game Over: true
+Score: 3
+
+After processCell for every cell in second row
+Board(Rows: 7, Cols: 7)
+RRRRRRR
+RR...RR
+YYYYYYY
+RRRRRRR
+YYYYYYY
+RRRRRRR
+.......
+Game Over: false
+Score: 10
+
