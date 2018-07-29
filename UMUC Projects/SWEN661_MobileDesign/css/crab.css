@@ -1,0 +1,64 @@
+@media (orientation: portrait) {
+    .landscape {display:none;}
+    }
+    @media (orientation: landscape) {
+    .portrait {display:none}
+    }
+
+/* Create equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 15rem;
+    padding: 10px;
+    height: 20rem; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav {
+    display: block;
+}
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    /* position: fixed; */
+    top: 0;
+    width: 100%;
+  }
+
+  .navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .navbar a:hover {
+    background: #ddd;
+    color: black;
+  }
+
+  .healthy {
+      background-color: green;
+      color: whitesmoke;
+  }
+
+  .unhealthy {
+      background-color: red;
+      color: whitesmoke;
+  }
+  .crab-input {
+      width: 8rem;
+  }
+
+  .crab-input.number {
+      width: 3rem;
+  }

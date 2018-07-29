@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" href="css/crab.css">
+	<!-- <link rel="stylesheet" media="all and (orientation:portrait)" href="css/portrait.css"> -->
+	<!-- <link rel="stylesheet" media="all and (orientation:landscape)" href="css/landscape.css"> -->
+
+</head>
+
+<body>
+	<div class="portrait">
+		<table border="0">
+			portrait
+			<tr>
+				<td>
+					row 1
+				</td>
+			</tr>
+			<tr>
+				<td>
+					row 2
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					row 3
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					row 4
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					row 5
+				</td>
+			</tr>
+
+
+		</table>
+	</div>
+
+
+	<div class="landscape">
+		<!-- landscape
+		<table border="0" colspan="5">
+			<tr>
+				<td>col 1</td>
+				<td>col 2</td>
+				<td>col 3</td>
+				<td>col 4</td>
+				<td>col 5</td>
+			</tr>
+		</table> -->
+
+		<div class="columns" id="app">
+			<div class="header">
+				<section class="section">
+					<h1 class="title">Chesapeake Blue Crab Health</h1>
+					<div class="navbar">
+						<a href="#newCrab">New Crab</a>
+						<a href="#clear">Clear</a>
+					</div>
+				</section>
+			</div>
+
+			<div class="column status" :class="classObject">
+				<span>
+					<label class="label">Status: </label> {{ status }}</span>
+			</div>
+			<div class="column main">
+				<!-- form starts here -->
+				<section class="form">
+					<div class="color">
+						<span>Enter the color of the crab</span>
+						<div class="control">
+							<span>
+								<label class="label">Selected Color</label>
+								<input v-model="form.color" class="crab-input number" min="0" step="1" type="number">
+
+								<p>{{ form.color }}</p>
+							</span>
+						</div>
+					</div>
+					<div class="weight">
+						<span>Enter the weight of the crab</span>
+						<div class="control">
+							<span>
+								<label class="label">Selected Weight</label>
+								<input v-model="form.weight" class="crab-input number" min="0" step="1" type="number">
+								<p>{{ form.weight }}</p>
+							</span>
+						</div>
+					</div>
+					<div class="length">
+						<span>Enter the length of the crab</span>
+						<div class="control">
+							<span>
+								<label class="label">Selected Length</label>
+								<input v-model="form.length" class="crab-input number" min="0" step="1" type="number">
+								<p>{{ form.length }}</p>
+							</span>
+						</div>
+					</div>
+					<div class="date">
+						<span>Enter the date crab was found</span>
+						<div class="control">
+							<span>
+								<label class="label">Current Date</label>
+								<input v-model="form.date" class="crab-input date" type="date">
+							</span>
+							<p>{{ form.date }}</p>
+						</div>
+					</div>
+				</section>
+				<button v-on:click="toggleHealth">Check Health</button>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		var HEALTHY = "Healthy";
+		var UNHEALTHY = "Unhealthy";
+		var mdCrabHealth = new Vue({
+			el: '#app',
+			data: {
+				form: {
+					color: 0,
+					weight: 0,
+					length: 0,
+					date: "2018/07/27"
+				},
+				error: null,
+				status: "",
+				statusClass: {
+					healthy: this.status && this.status == HEALTHY,
+					unhealthy: this.status && this.status == UNHEALTHY,
+					empty: !this.status || this.status == ""
+				}
+			},
+			computed: {
+				classObject: function () {
+					return {
+						healthy: this.status && this.status == HEALTHY,
+						unhealthy: this.status && this.status == UNHEALTHY,
+						'text-danger': this.error && this.error.type === 'fatal',
+						empty: !this.status || this.status == ""
+
+					}
+				}
+			},
+			methods: {
+				toggleHealth: function () {
+					if (this.status == HEALTHY) {
+						this.status = UNHEALTHY;
+					} else {
+						this.status = HEALTHY;
+					}
+				},
+				clearInputs: function () {
+
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>
