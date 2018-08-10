@@ -15,8 +15,8 @@
 			<section class="section">
 				<h1 class="title">Chesapeake Blue Crab Health</h1>
 				<div class="navbar">
-					<a href="#newCrab">New Crab</a>
-					<a href="#clear">Clear</a>
+					<a href="#newCrab" v-on:click="clearInputs">New Crab</a>
+					<a href="#clear" v-on:click="clearInputs">Clear</a>
 				</div>
 			</section>
 		</div>
@@ -34,7 +34,7 @@
 												<input v-model="form.color" class="crab-input number" min="0" step="1" type="number">
 											</span>
 											
-											<input type="range" list="tickmarks" v-model="form.color" class="crab-input slider" value="-1" id="myRange" min="0" max="10"
+											<input type="range" required list="tickmarks" v-model="form.color" class="crab-input slider" value="-1" id="myRange" min="0" max="10"
 											step="1">
 										</div>
 									</div>
@@ -47,7 +47,7 @@
 										<div class="control">
 											<span>
 												<label class="label">Selected Weight</label>
-												<input v-model="form.weight" class="crab-input number" min="0" step="1" type="number">
+												<input  required  v-model="form.weight" class="crab-input number" min="0" step="1" type="number">
 											</span>
 										</div>
 									</div>
@@ -61,7 +61,7 @@
 										<div class="control">
 											<span>
 												<label class="label">Selected Length</label>
-												<input v-model="form.length" class="crab-input number" min="0" step="1" type="number">
+												<input required  v-model="form.length" class="crab-input number" min="0" step="1" type="number">
 											</span>
 										</div>
 									</div>
@@ -75,7 +75,7 @@
 										<div class="control">
 											<span>
 												<label class="label">Current Date</label>
-												<input v-model="form.date" class="crab-input date" type="date">
+												<input  required v-model="form.date" class="crab-input date" type="date">
 											</span>
 										</div>
 									</div>
@@ -83,7 +83,7 @@
 					</tr>
 				</table>
 			</div>
-			<button class="checker" v-on:click="toggleHealth">Check Health</button>
+			<button class="checker" :disabled=isDisabled  v-on:click="checkHealth">Check Health</button>
 			
 			<div class="row status pstat" :class="classObject">
 					<span>
@@ -106,10 +106,10 @@
 							<div class="control">
 								<span>
 									<label class="label">Selected Color</label>
-									<input v-model="form.color" class="crab-input number" min="0" step="1" type="number">
+									<input  required v-model="form.color" class="crab-input number" min="0" step="1" type="number">
 								</span>
 								
-								<input type="range" list="tickmarks" v-model="form.color" class="crab-input slider" value="-1" id="myRange" min="0" max="10"
+								<input type="range" required  list="tickmarks" v-model="form.color" class="crab-input slider" value="-1" id="myRange" min="0" max="10"
 								step="1">
 							</div>
 						</div>
@@ -120,7 +120,7 @@
 							<div class="control">
 								<span>
 									<label class="label">Selected Weight</label>
-									<input v-model="form.weight" class="crab-input number" min="0" step="1" type="number">
+									<input required  v-model="form.weight" class="crab-input number" min="0" step="1" type="number">
 								</span>
 							</div>
 						</div>
@@ -131,7 +131,7 @@
 							<div class="control">
 								<span>
 									<label class="label">Selected Length</label>
-									<input v-model="form.length" class="crab-input number" min="0" step="1" type="number">
+									<input required  v-model="form.length" class="crab-input number" min="0" step="1" type="number">
 								</span>
 							</div>
 						</div>
@@ -142,14 +142,14 @@
 							<div class="control">
 								<span>
 									<label class="label">Current Date</label>
-									<input v-model="form.date" class="crab-input date" type="date">
+									<input required  v-model="form.date" class="crab-input date" type="date">
 								</span>
 							</div>
 						</div>
 					</td>
 				</tr>
 			</table>
-			<button class="checker" v-on:click="toggleHealth">Check Health</button>
+			<button class="checker" :disabled=isDisabled  v-on:click="checkHealth">Check Health</button>
 
 		
 		</div>
@@ -159,6 +159,8 @@
 	<script>
 		var HEALTHY = "Healthy";
 		var UNHEALTHY = "Unhealthy";
+		var THRESHHOLD_MONTH = 0;
+		var THRESHHOLD_DAY = 0;
 		var mdCrabHealth = new Vue({
 			el: '#app',
 			data: {
@@ -169,6 +171,7 @@
 					date: "2018-07-26"
 				},
 				error: null,
+				errors: [],
 				status: "",
 				statusClass: {
 					healthy: this.status && this.status == HEALTHY,
@@ -185,6 +188,10 @@
 						empty: !this.status || this.status == ""
 
 					}
+				},
+				isDisabled() {
+					// evaluate whatever you need to determine disabled here...
+					return !this.checkForm();
 				}
 			},
 			methods: {
@@ -195,8 +202,59 @@
 						this.status = HEALTHY;
 					}
 				},
-				clearInputs: function () {
+				checkHealth: function(){
+					// this.toggleHealth();
+					let crabHealth = null;
+					let crabDate = new Date(this.form.date).getMonth()
+					if(this.form.color > 7) {
+						crabHealth = HEALTHY;
+					}else if(this.form.weight > 10 &&
+							(crabDate.getMonth() > THRESHHOLD_MONTH ||
+							crabDate.getMonth() == THRESHHOLD_MONTH && 
+							crabDate.getDate() > THRESHHOLD_DAY)){
+						crabHealth = HEALTHY;
+					}else if(this.form.length > 5){
+						crabHealth = HEALTHY;
+					}else if(this.form.color > 5 &&
+							this.form.weight > 8 &&
+							this.form.length > 5){
+						crabHealth = HEALTHY;
+					}else{
+						crabHealth = UNHEALTHY;
+					}
+					this.status = crabHealth;
 
+				},
+				clearInputs: function () {
+					this.status = "";
+					this.form.color = -1;
+					this.form.weight = -1;
+					this.form.length = -1;
+					this.form.date = "2018-07-26";
+				},
+				checkForm: function (e) {
+					if (this.form.color > 0 && this.form.weight > 0 && this.form.length > 0 && this.form.date != "") {
+						return true;
+					}
+
+					this.errors = [];
+
+					if (this.form.color <= 0) {
+						this.errors.push('Color required.');
+					}
+					if (this.form.weight <= 0) {
+						this.errors.push('Weight required.');
+					}
+					if (this.form.length <= 0) {
+						this.errors.push('Length required.');
+					}
+					if (this.form.date == "" || !this.form.date) {
+						this.errors.push('Date required.');
+					}
+				
+
+					// e.preventDefault();
+					return false;
 				}
 			}
 		});
