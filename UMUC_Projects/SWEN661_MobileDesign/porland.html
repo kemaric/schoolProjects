@@ -22,6 +22,10 @@
 		</div>
 
 		<div class="portrait">
+			<div class="row status pstat" :class="classObject">
+					<span>
+						<label class="label">Status: </label> {{ status }}</span>
+			</div>
 			<div class="content">
 				<table border="0">
 					<tr id="por-color">
@@ -85,10 +89,7 @@
 			</div>
 			<button class="checker" :disabled=isDisabled  v-on:click="checkHealth">Check Health</button>
 			
-			<div class="row status pstat" :class="classObject">
-					<span>
-						<label class="label">Status: </label> {{ status }}</span>
-			</div>
+
 		</div>
 
 
