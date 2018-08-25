@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHotelReservationsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHotelReservationsLabel_hotelReservationsPK_name}"/>
+                    <h:outputText value="#{hotelReservationsController.selected.hotelReservationsPK.name}" title="#{bundle.ViewHotelReservationsTitle_hotelReservationsPK_name}"/>
+                    <h:outputText value="#{bundle.ViewHotelReservationsLabel_hotelReservationsPK_checkIn}"/>
+                    <h:outputText value="#{hotelReservationsController.selected.hotelReservationsPK.checkIn}" title="#{bundle.ViewHotelReservationsTitle_hotelReservationsPK_checkIn}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHotelReservationsLabel_checkOut}"/>
+                    <h:outputText value="#{hotelReservationsController.selected.checkOut}" title="#{bundle.ViewHotelReservationsTitle_checkOut}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHotelReservationsLabel_confirmation}"/>
+                    <h:outputText value="#{hotelReservationsController.selected.confirmation}" title="#{bundle.ViewHotelReservationsTitle_confirmation}"/>
+                    <h:outputText value="#{bundle.ViewHotelReservationsLabel_address}"/>
+                    <h:outputText value="#{hotelReservationsController.selected.address}" title="#{bundle.ViewHotelReservationsTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewHotelReservationsLabel_phone}"/>
+                    <h:outputText value="#{hotelReservationsController.selected.phone}" title="#{bundle.ViewHotelReservationsTitle_phone}"/>
+                    <h:outputText value="#{bundle.ViewHotelReservationsLabel_notes}"/>
+                    <h:outputText value="#{hotelReservationsController.selected.notes}" title="#{bundle.ViewHotelReservationsTitle_notes}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hotelReservationsController.destroyAndView}">
+                    <h:graphicImage class="resize"  value="#{bundle.ViewHotelReservationsDestroyLink}" />
+                </h:commandLink>
+                <br />
+                <br />
+                <h:link outcome="Edit">
+                    <h:graphicImage class="resize"  value="#{bundle.ViewHotelReservationsEditLink}" />
+                </h:link>
+                <br />
+                <h:commandLink action="#{hotelReservationsController.prepareCreate}" value="#{bundle.ViewHotelReservationsCreateLink}" />
+                <br />
+                <h:commandLink action="#{hotelReservationsController.prepareList}" value="#{bundle.ViewHotelReservationsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHotelReservationsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

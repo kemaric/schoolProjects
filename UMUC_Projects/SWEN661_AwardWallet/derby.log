@@ -1,0 +1,14 @@
+Fri Aug 17 14:19:19 EDT 2018 : Apache Derby Network Server - 10.8.3.2 - (1557835) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Fri Aug 17 15:11:02 EDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.3.2 - (1557835): instance a816c00e-0165-491c-f715-ffff87da922a 
+on database directory C:\Users\kemar\projects\SWEN661_AwardWallet\AwardWallet  with class loader sun.misc.Launcher$AppClassLoader@44d9973a 
+Loaded from file:/C:/Program%20Files/Java/jdk1.7.0_80/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_80-b15
+user.dir=C:\Program Files\Java\jdk1.7.0_80\db
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
+derby.system.home=C:\Users\kemar\projects\SWEN661_AwardWallet
+Database Class Loader started - derby.database.classpath=''

@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+    </h:head>
+
+    <h:body>
+        <div class="banner">
+            <table class="myhead" border="0">
+                <tr>
+                    <td width="7%"><img src="../resources/regular_small.png"></img></td>
+                    <td width="3%"></td>
+                    <td width="10.6%">
+                        <div class="tab-label">
+                            <h:link outcome="/account/List" value="Accounts"/>
+                            <span class="count">
+                                <h:outputText value="#{accountController.items.getRowCount()}"/>
+                            </span>
+                            <span class="padder"></span>
+                            <h:button outcome="/account/Create" value="+"/>
+                        </div>
+                    </td>
+                    <td width="3%"></td>
+                    <td width="8.4%">
+                        <div class="tab-label2">
+                            <h:link outcome="/hotelReservations/List" value="Trips"/>
+                            <span class="count">
+                                <h:outputText value="#{hotelReservationsController.items.getRowCount()}"/>
+                            </span>
+                            <span class="padder"></span>
+                            <h:button outcome="/hotelReservations/Create" value="+"/>
+                        </div>
+                    </td>
+                    <td width="50%"></td>
+                </tr>
+            </table>
+        </div>
+        
+
+    <div id="wrapper">
+        <div id="leftcolumn" class="app-panel">
+            <ul>
+                <li>
+                    <div class="collapsible">User Name</div>
+                    <div  class="content">
+                        <p>Demo user</p>
+                    </div>
+                </li>
+                <li><span class="addAwardButton">                            
+                        <h:link outcome="/account/Create" value="Add Award Program To Track"/></span></li>
+                <li>
+                    <div class="collapsible">Persons</div>
+                    <div class="content">
+                        <p>User 1</p>
+                        <p>User 2</p>
+                        <p>User 3</p>
+                        <p>User 4</p>
+                        <p>User 5</p>
+                        <p>User 6</p>
+                        <p>User 7</p>
+                        <p>User 8</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible">Invite to AwardWallet Lite</div>
+                    <div  class="content"></div>
+                </li>
+            </ul>
+        </div>
+        <div id="rightcolumn" class="app-body">
+            <h1 class="headder">
+                <ui:insert name="title">Default Title</ui:insert>
+            </h1>
+            <p>
+                <ui:insert name="body">Default Body</ui:insert>
+            </p>
+        </div>
+    </div>
+    </h:body>
+
+  
+<script  type="text/javascript">
+    //<![CDATA[
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+//]]>
+
+</script>    
+</html>

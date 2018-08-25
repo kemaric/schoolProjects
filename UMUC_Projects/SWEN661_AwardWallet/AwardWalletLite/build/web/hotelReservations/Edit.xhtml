@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHotelReservationsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHotelReservationsLabel_hotelReservationsPK_name}" for="hotelReservationsPK_name" />
+                    <h:inputText id="hotelReservationsPK_name" value="#{hotelReservationsController.selected.hotelReservationsPK.name}" title="#{bundle.EditHotelReservationsTitle_hotelReservationsPK_name}" required="true" requiredMessage="#{bundle.EditHotelReservationsRequiredMessage_hotelReservationsPK_name}"/>
+                    <h:outputLabel value="#{bundle.EditHotelReservationsLabel_hotelReservationsPK_checkIn}" for="hotelReservationsPK_checkIn" />
+                    <h:inputText id="hotelReservationsPK_checkIn" value="#{hotelReservationsController.selected.hotelReservationsPK.checkIn}" title="#{bundle.EditHotelReservationsTitle_hotelReservationsPK_checkIn}" required="true" requiredMessage="#{bundle.EditHotelReservationsRequiredMessage_hotelReservationsPK_checkIn}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHotelReservationsLabel_checkOut}" for="checkOut" />
+                    <h:inputText id="checkOut" value="#{hotelReservationsController.selected.checkOut}" title="#{bundle.EditHotelReservationsTitle_checkOut}" required="true" requiredMessage="#{bundle.EditHotelReservationsRequiredMessage_checkOut}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHotelReservationsLabel_confirmation}" for="confirmation" />
+                    <h:inputText id="confirmation" value="#{hotelReservationsController.selected.confirmation}" title="#{bundle.EditHotelReservationsTitle_confirmation}" />
+                    <h:outputLabel value="#{bundle.EditHotelReservationsLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{hotelReservationsController.selected.address}" title="#{bundle.EditHotelReservationsTitle_address}" required="true" requiredMessage="#{bundle.EditHotelReservationsRequiredMessage_address}"/>
+                    <h:outputLabel value="#{bundle.EditHotelReservationsLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{hotelReservationsController.selected.phone}" title="#{bundle.EditHotelReservationsTitle_phone}" />
+                    <h:outputLabel value="#{bundle.EditHotelReservationsLabel_notes}" for="notes" />
+                    <h:inputTextarea rows="4" cols="30" id="notes" value="#{hotelReservationsController.selected.notes}" title="#{bundle.EditHotelReservationsTitle_notes}" />
+                </h:panelGrid>
+                  <h:commandLink action="#{hotelReservationsController.update}">
+                      <h:graphicImage class="resize"  value="#{bundle.EditHotelReservationsSaveLink}" />
+                </h:commandLink>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHotelReservationsViewLink}"/>
+                <br />
+                <h:commandLink action="#{hotelReservationsController.prepareList}" value="#{bundle.EditHotelReservationsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHotelReservationsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

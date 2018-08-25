@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAccountTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAccountLabel_programName}"/>
+                    <h:outputText value="#{accountController.selected.programName}" title="#{bundle.ViewAccountTitle_programName}"/>
+                    <h:outputText value="#{bundle.ViewAccountLabel_url}"/>
+                    <h:outputText value="#{accountController.selected.url}" title="#{bundle.ViewAccountTitle_url}"/>
+                    <h:outputText value="#{bundle.ViewAccountLabel_account}"/>
+                    <h:outputText value="#{accountController.selected.account}" title="#{bundle.ViewAccountTitle_account}"/>
+                    <h:outputText value="#{bundle.ViewAccountLabel_balance}"/>
+                    <h:outputText value="#{accountController.selected.balance}" title="#{bundle.ViewAccountTitle_balance}"/>
+                    <h:outputText value="#{bundle.ViewAccountLabel_comment}"/>
+                    <h:outputText value="#{accountController.selected.comment}" title="#{bundle.ViewAccountTitle_comment}"/>
+                    <h:outputText value="#{bundle.ViewAccountLabel_expiration}"/>
+                    <h:outputText value="#{accountController.selected.expiration}" title="#{bundle.ViewAccountTitle_expiration}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewAccountLabel_goal}"/>
+                    <h:outputText value="#{accountController.selected.goal}" title="#{bundle.ViewAccountTitle_goal}"/>
+                    <h:outputText value="#{bundle.ViewAccountLabel_type}"/>
+                    <h:outputText value="#{accountController.selected.type}" title="#{bundle.ViewAccountTitle_type}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{accountController.destroyAndView}">
+                    <h:graphicImage class="resize"  value="#{bundle.ViewAccountDestroyLink}" />
+                </h:commandLink>
+                <br />
+                <br />
+                
+                <h:link outcome="Edit">
+                    <h:graphicImage class="resize"  value="#{bundle.ViewAccountEditLink}" />
+                </h:link>
+                <br />
+                <h:commandLink action="#{accountController.prepareCreate}" value="#{bundle.ViewAccountCreateLink}" />
+                <br />
+                <h:commandLink action="#{accountController.prepareList}" value="#{bundle.ViewAccountShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAccountIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
